@@ -12,12 +12,15 @@ export function WhyuseSection() {
             </p>
           </div>
           <p className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-            For Anchor, cut KYC costs by{" "}
-            <span className="text-[#06B6D4]">68%</span>
+            For Anchors, dramatically cut KYC costs
           </p>
           <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
-            Stop paying for the same user twice. StellarProof reuses verified credentials.{" "}
-            Anchors only pay for new verifications.
+            Stop paying for the same user twice. StellarProof reuses verified credentials
+            under a flat subscription — returning-user checks are included at no extra per-verification cost.
+          </p>
+          <p className="text-yellow-500/80 text-xs mt-2 max-w-xl mx-auto">
+            {/* TODO: Insert final subscription price/terms and recompute exact cost-reduction % before publishing */}
+            Exact cost-reduction percentage to be published once subscription pricing is finalized.
           </p>
         </div>
 
@@ -47,7 +50,7 @@ export function WhyuseSection() {
             <div className="space-y-5">
               {[
                 ["First verification", "$1.35"],
-                ["Returning user", "$0.10 reuse fee"],
+                ["Returning user", "Included in subscription"],
                 ["Drop-off rate", "2 - 5%"],
               ].map(([label, value]) => (
                 <div key={label} className="flex items-center justify-between border-b border-white/12 pb-4">
