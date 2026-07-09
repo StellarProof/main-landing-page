@@ -202,36 +202,26 @@ const sections: Record<NavId, () => React.ReactElement> = {
   Same person. Same passport. Same face.
   3 separate databases holding your documents.`}</Block>
 
-      <H2>Why Nobody Fixed It</H2>
-      <P>
-        SumSub has &quot;Reusable KYC&quot; but it only works within their own network. If Anchor A uses 
-        SumSub and Anchor B uses Onfido, reuse breaks completely. The large KYC companies have 
-        no incentive to fix this. Cross-provider reuse destroys their per-verification revenue.
-      </P>
-      <P>
-        The problem was never technology. It was incentives. StellarProof earns only when credentials 
-        are reused — so everything we build is designed to make reuse work as well as possible. Our 
-        interests and the ecosystem&apos;s are the same.
-      </P>
-
       <H2>The Solution</H2>
       <P>
-        StellarProof sits above every KYC provider as a shared identity layer. 
-        Verify once — your identity gets encrypted, locked to your Stellar wallet, 
-        and recorded on-chain. Every anchor after that gets a simple yes/no: this person is verified, 
-        low risk — no documents, no passport copies, no waiting. One tap. Two seconds. Done.
+        StellarProof doesn&apos;t hold your identity data at all. Your KYC provider verifies
+        you once and issues a credential directly to your own wallet — StellarProof never
+        sees or stores it. When an anchor needs to confirm you&apos;re verified, your wallet
+        proves it directly; StellarProof&apos;s servers only ever see a yes/no result, never
+        your documents.
       </P>
       <Block>{`With StellarProof:
-  User → Coins.ph   → Verify once via DigiLocker/PhilSys. Credential encrypted. ✓
-  User → Vibrant    → One tap consent. Proof returned in 2 seconds.            ✓  ($0.10)
-  User → Bitso      → One tap consent. Proof returned in 2 seconds.            ✓  ($0.10)
+  User → Coins.ph   → Verify once via DigiLocker/PhilSys. Credential issued to wallet. ✓
+  User → Vibrant    → One tap consent. Proof from wallet in 2 seconds.               ✓
+  User → Bitso      → One tap consent. Proof from wallet in 2 seconds.               ✓
 
   Same person. One verification.
-  Zero duplicate databases. Zero re-uploads.`}</Block>
+  Credential lives in your wallet. Zero central databases.`}</Block>
       <Callout type="success">
-        The breach that can&apos;t leak what it doesn&apos;t have. StellarProof stores only
-        encrypted blobs. The server cannot decrypt them under any circumstance
-        including legal compulsion.
+        There&apos;s no central database of user identities to breach, because there
+        isn&apos;t one. StellarProof&apos;s infrastructure stores only public information —
+        which KYC providers are approved, and which credentials have been revoked —
+        never anything that identifies you.
       </Callout>
 
       <H2>Key Numbers</H2>
@@ -239,7 +229,7 @@ const sections: Record<NavId, () => React.ReactElement> = {
         {[
           { val: "60–80%", label: "KYC drop-off rate across Stellar anchors" },
           { val: "$1-3", label: "Cost per first-time verification" },
-          { val: "$0.10", label: "Cost per reuse — 93% cheaper" },
+          { val: "Subscription", label: "Returning-user reuse included in flat monthly plan" },
         ].map((s) => (
           <div key={s.val} style={{ background: DARK2, border: `1px solid ${BORDER}`, borderRadius: 10, padding: 20 }}>
             <div style={{ fontSize: "clamp(20px, 5vw, 28px)", fontWeight: 700, color: CYAN, fontFamily: "'Trebuchet MS'" }}>
@@ -260,17 +250,17 @@ const sections: Record<NavId, () => React.ReactElement> = {
       <Step n={1} title="Connect your Stellar wallet">
         Your identity is tied to your wallet. No separate account needed.
       </Step>
-      <Step n={2} title="Prove you own the wallet">
+      <Step n={2} title="Sign a SEP-10 challenge to prove wallet ownership">
         One signature. Takes two seconds.
       </Step>
       <Step n={3} title="Complete KYC via your national ID">
-        StellarProof picks the fastest, cheapest option for your country automatically.
+        StellarProof routes you to the fastest, cheapest government rail for your country — DigiLocker, PhilSys, Smile ID, or others.
       </Step>
-      <Step n={4} title="Your credential is encrypted and locked to your wallet">
-        Nobody else can read it. Not even us.
+      <Step n={4} title="KYC provider issues a credential directly to your wallet">
+        The credential lives in your wallet. StellarProof never sees or stores it.
       </Step>
-      <Step n={5} title="A tamper-proof record is anchored on Stellar">
-        Permanent proof that verification happened, with no personal data stored on-chain.
+      <Step n={5} title="A proof hash is anchored on Stellar">
+        A SHA-256 hash is recorded on-chain as permanent, tamper-proof evidence that verification occurred — no personal data touches the chain.
       </Step>
       <H2>Every User After That</H2>
       <Step n={1} title="Visit a new anchor">
@@ -299,9 +289,11 @@ const sections: Record<NavId, () => React.ReactElement> = {
         traffic before you commit to anything.
       </P>
       <P>
-        For teams that need more, we offer a Compliance Dashboard, AML Transaction
-        Monitoring, Priority Integration Support, and a White-label SDK for wallets and
-        fintechs building on Stellar.
+        For teams that need more, we offer a Verification Analytics Dashboard,
+        Audit Log Explorer, Priority Integration Support, and a White-label SDK
+        for wallets and fintechs building on Stellar. Final AML/KYC decisions
+        remain with your compliance team — StellarProof provides the verification
+        evidence and infrastructure.
       </P>
     </div>
   ),
@@ -310,16 +302,27 @@ const sections: Record<NavId, () => React.ReactElement> = {
     <div>
       <H1>Architecture</H1>
       <P>
-        StellarProof sits between KYC providers and Stellar anchors as a shared
-        credential registry. Think of it as CKYC for the Stellar ecosystem: verify
-        once, and every anchor routes through consent back to the original verified
-        source.
+        StellarProof sits between KYC providers and Stellar anchors as consent
+        and verification infrastructure. Think of it as CKYC for the Stellar
+        ecosystem: verify once, and every anchor routes through consent back to
+        the credential in the user&apos;s own wallet.
       </P>
       <P>
-        The registry stores nothing readable. Credentials are encrypted with the
-        user&apos;s Stellar keypair before they ever touch our database. A server breach
-        exposes only encrypted blobs. Even we cannot read them.
+        StellarProof&apos;s servers never hold identity data. Credentials are issued
+        by KYC providers directly to the user&apos;s wallet. StellarProof stores only
+        public, non-PII data: approved-issuer public keys, revocation hashes, and
+        consent logs. There is no central database of user information to breach.
       </P>
+      <Callout type="info">
+        <strong>Phase 1 (live):</strong> KYC providers issue signed verifiable
+        credentials directly to the user&apos;s wallet. StellarProof orchestrates
+        consent between anchors and the wallet.
+        <br /><br />
+        <strong>Phase 2 (roadmap):</strong> Full zero-knowledge proof verification
+        on-chain via Soroban, using Stellar&apos;s native BN254/Poseidon support
+        (Protocol 25). Anchors verify predicates (&quot;verified, not sanctioned,
+        over 18&quot;) without any party ever seeing the underlying document.
+      </Callout>
     </div>
   ),
 
@@ -327,27 +330,28 @@ const sections: Record<NavId, () => React.ReactElement> = {
     <div>
       <H1>Security Model</H1>
       <P>
-        StellarProof is designed so that a breach of our servers exposes nothing useful.
+        StellarProof is designed so that a breach of our servers exposes nothing
+        useful — because our servers never hold identity data in the first place.
       </P>
       <P>
-        Credentials are encrypted with the user&apos;s own Stellar keypair before they touch
-        our database. The server generates a one-time keypair per credential, encrypts
-        the data, then permanently discards its own private key. What remains in our
-        database is a blob that only the user can decrypt. Not us. Not a regulator with
-        a subpoena directed at us. Not an attacker who gets root access.
-      </P>
-      <P>
-        If a user loses their phone, recovery uses Shamir 2 of 3 secret sharing. The
-        master key is split into three shards: one on the user&apos;s device, one with a
-        trusted contact, one in time-locked escrow with us. Any two shards reconstruct
-        the key. No single shard reveals anything on its own. Losing a phone never means
-        losing your identity.
+        Credentials live exclusively in the user&apos;s own wallet, issued directly by
+        the KYC provider. StellarProof&apos;s infrastructure stores only public information:
+        which issuers are approved, which credentials have been revoked, and consent
+        audit logs. There are no encrypted blobs, no central store, no server-side
+        copies of user data — nothing to decrypt, exfiltrate, or compel.
       </P>
       <P>
         For anchors, the audit log is append-only and cannot be modified or deleted.
         Every verification event is timestamped and tamper-evident. Your compliance team
-        has a permanent record without ever holding a single raw document.
+        has a permanent record proving that verification occurred — without ever holding
+        a single raw document.
       </P>
+      <Callout type="info">
+        <strong>Phase 2 (roadmap):</strong> With zero-knowledge proofs on Soroban,
+        even the yes/no result becomes trustless — anchors verify a cryptographic
+        proof on-chain without any party, including StellarProof, ever seeing the
+        underlying data.
+      </Callout>
     </div>
   ),
 
@@ -355,47 +359,76 @@ const sections: Record<NavId, () => React.ReactElement> = {
     <div>
       <H1>Compliance Model</H1>
       <P>
-        StellarProof resolves the hardest tension in reusable KYC: user privacy
-        versus regulatory subpoena power. It does this by keeping two separate
-        layers with two separate purposes.
+        StellarProof provides reusable verification evidence and consent infrastructure.
+        Final AML/KYC decisions remain the responsibility of each participating anchor.
       </P>
       <P>
-        The user layer holds the encrypted credential. Only the user can decrypt
-        it. We cannot read it. A regulator compelling us produces nothing useful.
+        The credential lives in the user&apos;s wallet. StellarProof never holds it.
+        A regulator compelling StellarProof produces only public data — approved issuers
+        and revocation hashes — nothing that identifies any individual.
       </P>
       <P>
         The compliance layer sits with the licensed KYC provider who performed the
-        original verification: DigiLocker, Onfido, SumSub. They retain their
+        original verification: DigiLocker, SumSub, Smile ID. They retain their
         compliance copy under their own regulatory obligations exactly as they do
-        today. Subpoenas go to them, not to us.
+        today. Subpoenas for underlying documents go to them, not to StellarProof.
       </P>
       <P>
-        For anchors, the obligation is satisfied by our audit log: a tamper-proof,
-        append-only record proving that verification occurred, by which licensed
-        provider, at what time, and to what risk level. You never held the raw
-        documents. You cannot be compelled to produce what you never had. That
-        reduces your regulatory surface area rather than adding to it.
+        For anchors, the obligation is satisfied by StellarProof&apos;s audit log: a
+        tamper-proof, append-only record proving that verification occurred, by which
+        licensed provider, at what time, and to what risk level. You never held the raw
+        documents. You cannot be compelled to produce what you never had. That reduces
+        your regulatory surface area rather than adding to it.
       </P>
+      <Callout type="warning">
+        StellarProof does not perform AML compliance, certify or approve individuals,
+        or replace any anchor&apos;s own KYC/AML program. It is verification infrastructure,
+        not a regulated compliance decision-maker.
+      </Callout>
     </div>
   ),
 
   roadmap: () => (
     <div>
       <H1>Roadmap</H1>
-      <H2>Phase 1: Build to launch</H2>
+
+      <H2>Phase 1 — Credential Issuance &amp; Consent (Live Today)</H2>
       <P>
-        Month 1 — Foundation
-        <br />
-        Month 2 — Consent System and UI
-        <br />
-        Month 3 — Security Audit and Pilots
-        <br />
-        Month 4 — Launch
+        KYC providers (Sumsub, DigiLocker, Smile ID) issue a signed verifiable
+        credential directly to the user&apos;s own wallet. StellarProof never stores
+        the credential or any PII — it stores only public, non-PII data
+        (approved-issuer public keys, revocation hashes) and orchestrates consent
+        between anchors and the user&apos;s wallet.
       </P>
-      <H2>Phase 2: Zero Knowledge Proofs</H2>
+      <Step n={1} title="Month 1 — Foundation">
+        Core credential schema, issuer onboarding, wallet integration.
+      </Step>
+      <Step n={2} title="Month 2 — Consent System &amp; UI">
+        Anchor consent flow, user approval UX, audit log infrastructure.
+      </Step>
+      <Step n={3} title="Month 3 — Security Audit &amp; Pilots">
+        Third-party security review, pilot integrations with early anchors.
+      </Step>
+      <Step n={4} title="Month 4 — Launch">
+        Production launch with initial anchor partners.
+      </Step>
+
+      <H2>Phase 2 — Zero-Knowledge Proof Verification (Coming)</H2>
+      <Callout type="info">
+        Phase 2 is on our roadmap but has not shipped yet. The primitives are
+        available; the integration work is ahead of us.
+      </Callout>
       <P>
-        Protocol 25 went live on Stellar mainnet in January 2026 with native BN254 and
-        Poseidon supports two primitives needed for selective disclosure.
+        Protocol 25 went live on Stellar mainnet in January 2026 with native BN254
+        and Poseidon support — the two cryptographic primitives needed for selective
+        disclosure and zero-knowledge proof verification.
+      </P>
+      <P>
+        Once complete, Phase 2 will allow anchors to verify predicates — &quot;this
+        person is verified, not sanctioned, over 18&quot; — via a Soroban smart contract,
+        without any party (including StellarProof) ever seeing the underlying
+        identity document. Proofs will be generated client-side on the user&apos;s
+        device using BN254 + Poseidon, and verified trustlessly on-chain.
       </P>
     </div>
   ),
@@ -414,10 +447,11 @@ const sections: Record<NavId, () => React.ReactElement> = {
     <div>
       <H1>FAQ</H1>
       {[
-        ["Does SumSub already have reusable KYC?", "It is mostly limited to provider-local networks."],
-        ["What if users lose private keys?", "Recovery can use Shamir 2-of-3 secret sharing."],
-        ["How do regulated anchors store records?", "Document mode can route consented records via providers."],
-        ["Can StellarProof be subpoenaed for plaintext?", "Encrypted-only architecture reduces plaintext exposure risk."],
+        ["Does SumSub already have reusable KYC?", "SumSub's reusable KYC only works within their own provider network. If Anchor A uses SumSub and Anchor B uses Smile ID, reuse breaks. StellarProof works across any KYC provider."],
+        ["What if users lose their wallet or device?", "The credential can be re-issued by the original KYC provider. StellarProof never held it, so there's nothing to 'recover' from our side."],
+        ["How do regulated anchors store records?", "The KYC provider who performed the original verification retains the compliance copy under their own regulatory obligations. Anchors receive proof of verification via StellarProof's audit log — never raw documents."],
+        ["Can StellarProof be subpoenaed for user data?", "StellarProof never holds identity data, credentials, or PII. Our servers store only public information — approved issuers and revocation hashes. There is no user data to produce."],
+        ["Does StellarProof perform AML compliance?", "No. StellarProof provides reusable verification evidence and consent infrastructure. Final AML/KYC decisions remain the responsibility of each participating anchor."],
       ].map(([q, a], i) => (
         <FAQItem key={i} q={q} a={a} />
       ))}
