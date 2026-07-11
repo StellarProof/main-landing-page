@@ -50,15 +50,11 @@ StellarProof sits between KYC providers and Stellar anchors as **consent and ver
 - **StellarProof stores only public, non-PII data:** approved-issuer public keys, revocation hashes, and consent logs.
 - **There is no central database of user information to breach.**
 
-### Phase 1 — Credential Issuance & Consent (Live)
-
-KYC providers issue signed verifiable credentials directly to the user's wallet. StellarProof orchestrates consent between anchors and the wallet.
-
-### Phase 2 — Zero-Knowledge Proof Verification (Roadmap)
+### Phase 1 — Zero-Knowledge Proof Verification (Roadmap)
 
 Full ZK proof verification on-chain via Soroban, using Stellar's native BN254/Poseidon support (Protocol 25). Anchors verify predicates ("verified, not sanctioned, over 18") without any party — including StellarProof — ever seeing the underlying document.
 
-> **Note:** Phase 2 is on the roadmap but has not shipped yet. The cryptographic primitives are available on Stellar mainnet; the integration work is ahead of us.
+> **Note:** Phase 1 is on the roadmap but has not shipped yet. The cryptographic primitives are available on Stellar mainnet; the integration work is ahead of us.
 
 ---
 
@@ -72,6 +68,7 @@ StellarProof provides **reusable verification evidence and consent infrastructur
 
 ---
 
+```markdown
 ## Tech Stack
 
 | Layer | Technology |
@@ -79,67 +76,14 @@ StellarProof provides **reusable verification evidence and consent infrastructur
 | Framework | [Next.js](https://nextjs.org/) (App Router) + TypeScript |
 | Styling | [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) |
 | Animation | [Framer Motion](https://www.framer.com/motion/) |
-| 3D | WebGL / GLSL (custom terrain shader) |
-| Deployment | Vercel |
-
-## Project Structure
-
+| 3D / Visual | WebGL + GLSL (custom terrain shader) |
+| Smart Contracts | [Soroban](https://soroban.stellar.org/) (Rust) on Stellar |
+| ZK Proofs | BBS+ / BN254 + Poseidon (Protocol 25) |
+| Identity Standard | [W3C Verifiable Credentials v2.0](https://www.w3.org/TR/vc-data-model-2.0/) |
+| Auth | [SEP-10](https://stellar.org/protocol/sep-10) (Stellar SDK) |
+| Blockchain | [Stellar](https://stellar.org/) Testnet → Mainnet |
+| Deployment | [Vercel](https://vercel.com/) |
 ```
-├── app/
-│   ├── page.tsx              # Homepage
-│   ├── about-us/page.tsx     # About page (tabbed: What, How, Architecture, etc.)
-│   ├── layout.tsx            # Root layout
-│   ├── globals.css           # Global styles
-│   └── api/waitlist/         # Waitlist API route (Notion integration)
-├── components/
-│   ├── sections/             # Page sections (hero, problem, how-it-works, etc.)
-│   └── ui/                   # Reusable UI components
-├── lib/                      # Utilities
-└── public/                   # Static assets (logo, images)
-```
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm or yarn
-
-### Setup
-
-```bash
-# Clone the repo
-git clone https://github.com/StellarProof/main-landing-page.git
-cd main-landing-page
-
-# Install dependencies
-npm install
-
-# Copy environment variables (if .env.example exists)
-cp .env.example .env.local  # Fill in values
-
-# Run dev server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to see the site.
-
-### Build
-
-```bash
-npm run build
-```
-
----
-
-## Contributing
-
-1. Create a feature branch: `git checkout -b feature/your-feature`
-2. Commit your changes with a descriptive message
-3. Push to your branch: `git push origin feature/your-feature`
-4. Open a Pull Request against `main`
 
 ---
 

@@ -392,66 +392,56 @@ const sections: Record<NavId, () => React.ReactElement> = {
     <div>
       <H1>Roadmap</H1>
 
-      <H2>Phase 1 — Credential Issuance &amp; Consent (Live Today)</H2>
-      <P>
-        KYC providers (Sumsub, DigiLocker, Smile ID) issue a signed verifiable
-        credential directly to the user&apos;s own wallet. StellarProof never stores
-        the credential or any PII — it stores only public, non-PII data
-        (approved-issuer public keys, revocation hashes) and orchestrates consent
-        between anchors and the user&apos;s wallet.
-      </P>
-      <Step n={1} title="Month 1 — Foundation">
-        Core credential schema, issuer onboarding, wallet integration.
-      </Step>
-      <Step n={2} title="Month 2 — Consent System &amp; UI">
-        Anchor consent flow, user approval UX, audit log infrastructure.
-      </Step>
-      <Step n={3} title="Month 3 — Security Audit &amp; Pilots">
-        Third-party security review, pilot integrations with early anchors.
-      </Step>
-      <Step n={4} title="Month 4 — Launch">
-        Production launch with initial anchor partners.
-      </Step>
-
-      <H2>Phase 2 — Zero-Knowledge Proof Verification (Coming)</H2>
-      <Callout type="info">
-        Phase 2 is on our roadmap but has not shipped yet. The primitives are
-        available; the integration work is ahead of us.
-      </Callout>
-      <P>
-        Protocol 25 went live on Stellar mainnet in January 2026 with native BN254
-        and Poseidon support — the two cryptographic primitives needed for selective
-        disclosure and zero-knowledge proof verification.
-      </P>
-      <P>
-        Once complete, Phase 2 will allow anchors to verify predicates — &quot;this
-        person is verified, not sanctioned, over 18&quot; — via a Soroban smart contract,
-        without any party (including StellarProof) ever seeing the underlying
-        identity document. Proofs will be generated client-side on the user&apos;s
-        device using BN254 + Poseidon, and verified trustlessly on-chain.
-      </P>
+      <p>Phase 1 — Zero-Knowledge Proof Verification (Coming)</p>
     </div>
   ),
 
   team: () => (
     <div>
       <H1>Team</H1>
-      <P> <a href="https://x.com/Dhanush_devx" target="_blank" rel="noopener noreferrer"
+      <P> <a href="https://x.com/ushiki_kirigawa" target="_blank" rel="noopener noreferrer"
           style={{ color: CYAN, textDecoration: "underline" }} >
           Dhanush </a>{" "} - Founder of StellarProof
       </P>
     </div>
   ),
 
-  faq: () => (
+ faq: () => (
     <div>
       <H1>FAQ</H1>
       {[
-        ["Does SumSub already have reusable KYC?", "SumSub's reusable KYC only works within their own provider network. If Anchor A uses SumSub and Anchor B uses Smile ID, reuse breaks. StellarProof works across any KYC provider."],
-        ["What if users lose their wallet or device?", "The credential can be re-issued by the original KYC provider. StellarProof never held it, so there's nothing to 'recover' from our side."],
-        ["How do regulated anchors store records?", "The KYC provider who performed the original verification retains the compliance copy under their own regulatory obligations. Anchors receive proof of verification via StellarProof's audit log — never raw documents."],
-        ["Can StellarProof be subpoenaed for user data?", "StellarProof never holds identity data, credentials, or PII. Our servers store only public information — approved issuers and revocation hashes. There is no user data to produce."],
-        ["Does StellarProof perform AML compliance?", "No. StellarProof provides reusable verification evidence and consent infrastructure. Final AML/KYC decisions remain the responsibility of each participating anchor."],
+        [
+          "What does StellarProof actually store?",
+          "Two things only — The Issuer Registry stores trusted KYC provider DIDs and public keys. The Revocation Registry stores Poseidon hash commitments of revoked credentials. StellarProof never holds identity data, credentials, documents, or any user PII. Our servers are not in the verification path at all."
+        ],
+        [
+          "Where does the user's credential live?",
+          "In the user's own wallet not on StellarProof's servers. The KYC provider issues a W3C Verifiable Credential directly to the user's wallet after verification. StellarProof never receives it. The ZK proof is generated locally on the user's device and submitted directly to Soroban."
+        ],
+        [
+          "What if a user loses their wallet or device?",
+          "The credential can be re-issued by the original KYC provider. Because StellarProof never held the credential, there is nothing to recover from our side. The user returns to their original provider — DigiLocker, Smile ID, or similar — and receives a fresh W3C VC. The re-issued credential generates a new ZK proof that passes the same on-chain verification."
+        ],
+        [
+          "How does revocation work?",
+          "When a credential is revoked by the KYC provider or the user a Poseidon hash commitment is added to the Revocation Registry on Soroban. Every future ZK proof from that credential must include a non-membership proof against the current revocation root. If the credential is revoked, the proof fails the ZK Verifier check automatically. No manual notification between anchors is required."
+        ],
+        [
+          "What can an anchor see?",
+          "Only the ComplianceVerified event emitted to the Stellar ledger: verified status, risk level, document type, issuer DID, and timestamp. Anchors never see the user's name, date of birth, passport number, address, or any raw PII. They read the compliance status directly from the ledger — StellarProof is not in that path."
+        ],
+        [
+          "How do regulated anchors handle compliance records?",
+          "The KYC provider who performed the original verification retains the compliance copy under their own regulatory obligations — FATF, AML, and local requirements. Anchors receive cryptographic proof of verification via the ComplianceVerified event on Stellar. StellarProof's audit log records which wallet was verified, when, and by which issuer — with no PII attached."
+        ],
+        [
+          "Can StellarProof be subpoenaed for user data?",
+          "There is no user data to produce. StellarProof's on-chain contracts store only approved issuer DIDs and revocation hashes — both public. Our off-chain infrastructure stores consent metadata and audit logs with no PII. Regulators seeking identity records would go to the licensed KYC provider who holds the compliance copy, not to StellarProof."
+        ],
+        [
+          "Does StellarProof perform AML or KYC decisions?",
+          "No. StellarProof provides reusable zero-knowledge verification infrastructure. The ZK Verifier contract confirms that a credential came from a trusted issuer and has not been revoked. Final AML screening, sanctions checks, and onboarding decisions remain the responsibility of each participating anchor under their own regulatory obligations."
+        ],
       ].map(([q, a], i) => (
         <FAQItem key={i} q={q} a={a} />
       ))}
