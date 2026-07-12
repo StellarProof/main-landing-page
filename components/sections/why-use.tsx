@@ -31,8 +31,8 @@ export function WhyuseSection() {
             </div>
             <div className="space-y-5">
               {[
-                ["Per verification", "$1.35"],
-                ["Returning user", "$1.35 again"],
+                ["Per verification", "$1"],
+                ["Returning user", "$1 again"],
                 ["Drop-off rate", "60 – 80%"],
               ].map(([label, value]) => (
                 <div key={label} className="flex items-center justify-between border-b border-white/12 pb-4">
@@ -49,7 +49,7 @@ export function WhyuseSection() {
             </div>
             <div className="space-y-5">
               {[
-                ["First verification", "$1.35"],
+                ["First verification", "$1"],
                 ["Returning user", "Included in subscription"],
                 ["Drop-off rate", "2 - 5%"],
               ].map(([label, value]) => (

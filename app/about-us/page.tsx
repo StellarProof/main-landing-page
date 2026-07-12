@@ -19,7 +19,6 @@ const nav = [
   { id: "compliance", label: "Compliance Model", icon: "" },
   { id: "roadmap", label: "Roadmap", icon: "" },
   { id: "team", label: "Team", icon: "" },
-  { id: "faq", label: "FAQ", icon: "" },
 ] as const;
 
 type NavId = (typeof nav)[number]["id"];
@@ -195,9 +194,9 @@ const sections: Record<NavId, () => React.ReactElement> = {
         to use the product Because they&apos;ve done it before and don&apos;t want to do it again.
       </P>
       <Block>{`Without StellarProof:
-  User → Coins.ph   → Upload passport, ID, selfie. Wait 2 days. ✓  ($1.35)
-  User → Vibrant    → Upload passport, ID, selfie. Wait 2 days. ✓  ($1.35)
-  User → Bitso      → Upload passport, ID, selfie. Wait 2 days. ✓  ($1.35)
+  User → Coins.ph   → Upload passport, ID, selfie. Wait 2 days. ✓  ($1)
+  User → Vibrant    → Upload passport, ID, selfie. Wait 2 days. ✓  ($1)
+  User → Bitso      → Upload passport, ID, selfie. Wait 2 days. ✓  ($1)
 
   Same person. Same passport. Same face.
   3 separate databases holding your documents.`}</Block>
@@ -392,31 +391,11 @@ const sections: Record<NavId, () => React.ReactElement> = {
     <div>
       <H1>Roadmap</H1>
 
-      <H2>Phase 1 — Credential Issuance &amp; Consent (Live Today)</H2>
-      <P>
-        KYC providers (Sumsub, DigiLocker, Smile ID) issue a signed verifiable
-        credential directly to the user&apos;s own wallet. StellarProof never stores
-        the credential or any PII — it stores only public, non-PII data
-        (approved-issuer public keys, revocation hashes) and orchestrates consent
-        between anchors and the user&apos;s wallet.
-      </P>
-      <Step n={1} title="Month 1 — Foundation">
-        Core credential schema, issuer onboarding, wallet integration.
-      </Step>
-      <Step n={2} title="Month 2 — Consent System &amp; UI">
-        Anchor consent flow, user approval UX, audit log infrastructure.
-      </Step>
-      <Step n={3} title="Month 3 — Security Audit &amp; Pilots">
-        Third-party security review, pilot integrations with early anchors.
-      </Step>
-      <Step n={4} title="Month 4 — Launch">
-        Production launch with initial anchor partners.
-      </Step>
-
-      <H2>Phase 2 — Zero-Knowledge Proof Verification (Coming)</H2>
+      <H2>Phase 1 — Zero-Knowledge Proof Verification (Coming)</H2>
       <Callout type="info">
-        Phase 2 is on our roadmap but has not shipped yet. The primitives are
-        available; the integration work is ahead of us.
+        Phase 1 is on our roadmap but has not shipped yet. The cryptographic
+        primitives are available on Stellar mainnet; the integration work is
+        ahead of us.
       </Callout>
       <P>
         Protocol 25 went live on Stellar mainnet in January 2026 with native BN254
@@ -424,40 +403,39 @@ const sections: Record<NavId, () => React.ReactElement> = {
         disclosure and zero-knowledge proof verification.
       </P>
       <P>
-        Once complete, Phase 2 will allow anchors to verify predicates — &quot;this
+        Phase 1 will allow anchors to verify predicates — &quot;this
         person is verified, not sanctioned, over 18&quot; — via a Soroban smart contract,
         without any party (including StellarProof) ever seeing the underlying
         identity document. Proofs will be generated client-side on the user&apos;s
         device using BN254 + Poseidon, and verified trustlessly on-chain.
       </P>
+      <Step n={1} title="Month 1 — Foundation">
+        Core credential schema, ZK circuit design, issuer onboarding, wallet integration.
+      </Step>
+      <Step n={2} title="Month 2 — ZK Proof Layer & Consent System">
+        Client-side proof generation, anchor consent flow, user approval UX, audit log infrastructure.
+      </Step>
+      <Step n={3} title="Month 3 — Security Audit & Pilots">
+        Third-party security review, ZK circuit audit, pilot integrations with early anchors.
+      </Step>
+      <Step n={4} title="Month 4 — Launch">
+        Production launch with initial anchor partners.
+      </Step>
     </div>
   ),
 
   team: () => (
     <div>
       <H1>Team</H1>
-      <P> <a href="https://x.com/Dhanush_devx" target="_blank" rel="noopener noreferrer"
+      <P> <a href="https://x.com/ushiki_kirigawa" target="_blank" rel="noopener noreferrer"
           style={{ color: CYAN, textDecoration: "underline" }} >
           Dhanush </a>{" "} - Founder of StellarProof
       </P>
     </div>
   ),
 
-  faq: () => (
-    <div>
-      <H1>FAQ</H1>
-      {[
-        ["Does SumSub already have reusable KYC?", "SumSub's reusable KYC only works within their own provider network. If Anchor A uses SumSub and Anchor B uses Smile ID, reuse breaks. StellarProof works across any KYC provider."],
-        ["What if users lose their wallet or device?", "The credential can be re-issued by the original KYC provider. StellarProof never held it, so there's nothing to 'recover' from our side."],
-        ["How do regulated anchors store records?", "The KYC provider who performed the original verification retains the compliance copy under their own regulatory obligations. Anchors receive proof of verification via StellarProof's audit log — never raw documents."],
-        ["Can StellarProof be subpoenaed for user data?", "StellarProof never holds identity data, credentials, or PII. Our servers store only public information — approved issuers and revocation hashes. There is no user data to produce."],
-        ["Does StellarProof perform AML compliance?", "No. StellarProof provides reusable verification evidence and consent infrastructure. Final AML/KYC decisions remain the responsibility of each participating anchor."],
-      ].map(([q, a], i) => (
-        <FAQItem key={i} q={q} a={a} />
-      ))}
-    </div>
-  ),
 };
+
 
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
