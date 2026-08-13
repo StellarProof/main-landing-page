@@ -105,6 +105,9 @@ export function HeroSection() {
                 <a href="/about-us" className="px-6 sm:px-8 py-3 sm:py-4 bg-white/20 text-[#06B6D4] font-semibold rounded-lg text-base sm:text-lg hover:bg-white/30 transition-colors border border-white/30 backdrop-blur-sm">
                   About us
                 </a>
+                <a href="/whitepaper" className="px-6 sm:px-8 py-3 sm:py-4 bg-white/20 text-[#06B6D4] font-semibold rounded-lg text-base sm:text-lg hover:bg-white/30 transition-colors border border-white/30 backdrop-blur-sm">
+                  Whitepaper
+                </a>
               </div>
           </div>
         </div>

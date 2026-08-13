@@ -8,6 +8,7 @@ const footerLinks = [
     title: "Company",
     links: [
       { title: "About us", url: "/about-us" },
+      { title: "Whitepaper", url: "/whitepaper" },
       { title: "Blog", url: "#" },
       { title: "GitHub", url: "https://github.com/StellarProof" },
     ],
