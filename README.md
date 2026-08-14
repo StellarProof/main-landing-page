@@ -87,7 +87,7 @@ StellarProof provides **reusable verification evidence and consent infrastructur
 ```
 ├── app/
 │   ├── page.tsx              # Homepage
-│   ├── about-us/page.tsx     # About page (tabbed: What, How, Architecture, etc.)
+│   ├── docs/page.tsx     # About page (tabbed: What, How, Architecture, etc.)
 │   ├── layout.tsx            # Root layout
 │   ├── globals.css           # Global styles
 │   └── api/waitlist/         # Waitlist API route (Notion integration)
