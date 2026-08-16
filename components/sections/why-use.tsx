@@ -15,7 +15,7 @@ export function WhyuseSection() {
             For Anchors, dramatically cut KYC costs
           </p>
           <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
-            Stop paying for the same user twice. StellarProof reuses verified credentials
+            Stop paying for the same user twice. StellarProof is built to reuse verified credentials
             under a flat subscription — returning-user checks are included at no extra per-verification cost.
           </p>
           <p className="text-yellow-500/80 text-xs mt-2 max-w-xl mx-auto">

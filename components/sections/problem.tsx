@@ -6,7 +6,7 @@ export function ProblemSection() {
     <section className="relative px-6 py-16 bg-transparent">
       <div className="max-w-6xl mx-auto">
         <p className="px-4 text-[#06B6D4] text-xl sm:text-3xl md:text-4xl font-bold text-center pointer-events-none z-10 mb-8">
-          The Problem
+          Problem
         </p>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">

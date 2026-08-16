@@ -5,58 +5,58 @@ import { motion, AnimatePresence } from "framer-motion";
 const firstTimeSteps = [
   {
     number: 1,
-    title: "User signs SEP-10 challenge",
+    title: "User will sign a SEP-10 challenge",
     description:
-      "Wallet-native authentication — the user proves ownership of their Stellar account with a single signature. No passwords, no accounts to create.",
+      "Wallet-native authentication — the user will prove ownership of their Stellar account with a single signature. No passwords, no accounts to create.",
     tag: "Authentication",
   },
   {
     number: 2,
-    title: "Routes to cheapest govt rail",
+    title: "Will route to cheapest govt rail",
     description:
-      "StellarProof automatically routes the user to the fastest, cheapest government-backed KYC provider for their country — DigiLocker, PhilSys, Smile ID, and more.",
+      "StellarProof will automatically route the user to the fastest, cheapest government-backed KYC provider for their country — DigiLocker, PhilSys, Smile ID, and more.",
     tag: "Routing",
   },
   {
     number: 3,
-    title: "KYC provider verifies identity",
+    title: "KYC provider will verify identity",
     description:
-      "The licensed KYC provider performs the actual verification. Compliance copy retained by the provider under their own regulatory obligations (FATF/AML).",
+      "The licensed KYC provider will perform the actual verification. Compliance copy retained by the provider under their own regulatory obligations (FATF/AML).",
     tag: "Verification",
   },
   {
     number: 4,
     title: "Verified data → ZK proof layer",
     description:
-      "Verified credential data is passed to the zero-knowledge proof layer, which runs entirely client-side on the user's own device. StellarProof's servers never see the data.",
+      "Verified credential data will be passed to the zero-knowledge proof layer, which will run entirely client-side on the user's own device. StellarProof's servers will never see the data.",
     tag: "Client-side",
   },
   {
     number: 5,
-    title: "ZK proof generated locally",
+    title: "ZK proof will be generated locally",
     description:
-      "A zero-knowledge proof is generated on the user's device using BN254 + Poseidon cryptographic primitives, leveraging Stellar Protocol 25's native support.",
+      "A zero-knowledge proof will be generated on the user's device using BN254 + Poseidon cryptographic primitives, leveraging Stellar Protocol 25's native support.",
     tag: "BN254 + Poseidon",
   },
   {
     number: 6,
     title: "SHA-256 proof hash anchored on Stellar",
     description:
-      "A SHA-256 hash of the proof is recorded on-chain as permanent, tamper-proof evidence that verification occurred. No personal data ever touches the chain.",
+      "A SHA-256 hash of the proof will be recorded on-chain as permanent, tamper-proof evidence that verification occurred. No personal data will ever touch the chain.",
     tag: "On-chain",
   },
   {
     number: 7,
-    title: "ZK credential stored in user's wallet",
+    title: "ZK credential will be stored in user's wallet",
     description:
-      "The full ZK credential lives exclusively in the user's own wallet. StellarProof never stores, sees, or has access to it.",
+      "The full ZK credential will live exclusively in the user's own wallet. StellarProof is designed to never store, see, or have access to it.",
     tag: "User-owned",
   },
   {
     number: 8,
-    title: "Anchor receives proof — not PII",
+    title: "Anchor will receive proof — not PII",
     description:
-      "The anchor receives a cryptographic proof that the user is verified — never the underlying documents, passport scans, or personal information.",
+      "The anchor will receive a cryptographic proof that the user is verified — never the underlying documents, passport scans, or personal information.",
     tag: "Privacy-first",
   },
 ];
@@ -64,37 +64,37 @@ const firstTimeSteps = [
 const returningSteps = [
   {
     number: 1,
-    title: "User signs SEP-10 challenge",
+    title: "User will sign a SEP-10 challenge",
     description:
-      "Same wallet-native authentication. One signature to prove ownership — takes two seconds.",
+      "Same wallet-native authentication. One signature to prove ownership — will take two seconds.",
     tag: "Authentication",
   },
   {
     number: 2,
-    title: "Wallet already holds a valid ZK credential",
+    title: "Wallet will already hold a valid ZK credential",
     description:
-      "No new verification needed. The credential from the first verification is already in the user's wallet, ready to use.",
+      "No new verification needed. The credential from the first verification will already be in the user's wallet, ready to use.",
     tag: "Existing credential",
   },
   {
     number: 3,
-    title: "Anchor requests proof of required attributes",
+    title: "Anchor will request proof of required attributes",
     description:
-      "The anchor specifies what it needs to verify — identity status, sanction check, age threshold. Only the required attributes, nothing more.",
+      "The anchor will specify what it needs to verify — identity status, sanction check, age threshold. Only the required attributes, nothing more.",
     tag: "Selective disclosure",
   },
   {
     number: 4,
-    title: "Proof generated locally from existing credential",
+    title: "Proof will be generated locally from existing credential",
     description:
-      "A fresh ZK proof is generated client-side from the existing credential. No re-KYC, no document uploads, no waiting.",
+      "A fresh ZK proof will be generated client-side from the existing credential. No re-KYC, no document uploads, no waiting.",
     tag: "No re-KYC",
   },
   {
     number: 5,
-    title: "Anchor receives proof — verified in seconds",
+    title: "Anchor will receive proof — verified in seconds",
     description:
-      "The anchor receives a valid proof and onboards the user instantly. The entire process takes seconds, not days.",
+      "The anchor will receive a valid proof and onboard the user instantly. The entire process will take seconds, not days.",
     tag: "Instant",
   },
 ];
@@ -112,10 +112,10 @@ export function HowItWorksSection() {
               How we solve it
             </p>
             <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-8">
-              StellarProof creates a reusable ZK credential tied to your Stellar
+              StellarProof is building a reusable ZK credential tied to your Stellar
               wallet.
               <br />
-              Anchors verify the proof, not your documents — ever.
+              Anchors will verify the proof, not your documents — ever.
             </p>
 
             {/* Tab toggle */}
@@ -227,18 +227,18 @@ export function HowItWorksSection() {
                     <span className="text-white font-semibold">
                       Result:
                     </span>{" "}
-                    User is verified, credential lives in their wallet, anchor
-                    received proof — not PII. StellarProof never stored or saw
-                    the identity data.
+                    User will be verified, credential will live in their wallet,
+                    anchor will receive proof — not PII. StellarProof is designed to
+                    never store or see the identity data.
                   </>
                 ) : (
                   <>
                     <span className="text-white font-semibold">
                       Result:
                     </span>{" "}
-                    No re-KYC. No document uploads. No waiting. Proof generated
-                    from existing credential in seconds — included in the
-                    anchor&apos;s subscription.
+                    No re-KYC. No document uploads. No waiting. Proof will be
+                    generated from existing credential in seconds — included in
+                    the anchor&apos;s subscription.
                   </>
                 )}
               </p>

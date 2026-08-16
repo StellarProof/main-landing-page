@@ -7,8 +7,7 @@ const footerLinks = [
   {
     title: "Company",
     links: [
-      { title: "About us", url: "/about-us" },
-      { title: "Whitepaper", url: "/whitepaper" },
+      { title: "About us", url: "/docs" },
       { title: "Blog", url: "#" },
       { title: "GitHub", url: "https://github.com/StellarProof" },
     ],
@@ -24,7 +23,7 @@ const footerLinks = [
     title: "Connect",
     links: [
       { title: "X (Twitter)", url: "https://x.com/StellarProofOrg" },
-      { title: "Gmail", url: "mailto:getstellarproof@gmail.com" },
+      { title: "Gmail", url: "mailto:stellarprooforg@gmail.com" },
       { title: "Discord", url: "https://discord.gg/stellardev" },
     ],
   },
@@ -43,8 +42,8 @@ export function FooterSection() {
             </span>
           </Link>
           <p className="text-gray-500 text-sm leading-relaxed">
-            Reusable identity layer for the Stellar ecosystem.
-            Verify once. reuse at every anchor.
+            Zk proof identity infra layer for Stellar ecosystem.
+            Prove's everything, Reveal nothing.
           </p>
         </div>
 
