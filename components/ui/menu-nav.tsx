@@ -135,7 +135,7 @@ export function MenuNav() {
           <div className="is--full">
             <nav className="nav-row">
               <a href="/" aria-label="home" className="nav-logo-row">
-                <img src="/StellarProof-logo.svg" alt="StellarProof" className="h-auto w-full" />
+                <img src="/stellarproof-logo.svg" alt="StellarProof" className="h-auto w-full" />
               </a>
               <div className="nav-row__right">
                 <button className="nav-close-btn" onClick={toggleMenu}>

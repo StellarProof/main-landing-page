@@ -14,7 +14,7 @@ export default function Home() {
       </div>
       <div className="relative z-10 bg-black snap-start">
         <img
-          src="/StellarProof-logo.svg"
+          src="/stellarproof-logo.svg"
           alt="StellarProof"
           className="relative h-auto w-full px-6 py-8 sm:py-12"
         />
