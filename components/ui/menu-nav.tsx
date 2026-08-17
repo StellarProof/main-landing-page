@@ -178,13 +178,6 @@ export function MenuNav() {
                   </a>
                 </li>
                 <li className="menu-list-item">
-                  <a href="#" className="nav-link">
-                    <p className="nav-link-text" data-menu-fade>
-                      Blog
-                    </p>
-                  </a>
-                </li>
-                <li className="menu-list-item">
                   <a href="mailto:stellarprooforg@gmail.com" className="nav-link">
                     <p className="nav-link-text">Contact us</p>
                   </a>
