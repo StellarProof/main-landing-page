@@ -112,10 +112,7 @@ export function HowItWorksSection() {
               How we solve it
             </p>
             <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-8">
-              StellarProof is building a reusable ZK credential tied to your Stellar
-              wallet.
-              <br />
-              Anchors will verify the proof, not your documents — ever.
+              StellarProof is building a reusable ZK credential tied to User Stellar wallet.
             </p>
 
             {/* Tab toggle */}

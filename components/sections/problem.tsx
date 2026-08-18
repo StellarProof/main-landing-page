@@ -14,7 +14,7 @@ export function ProblemSection() {
             <User className="h-10 w-10 sm:h-14 sm:w-14 md:h-16 md:w-16 text-white" strokeWidth={1.2} />
             <h3 className="mt-5 sm:mt-8 text-xl sm:text-2xl md:text-3xl font-semibold text-white leading-tight">For Users</h3>
             <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg leading-relaxed text-zinc-300">
-              Users uses the same document every single time to verify a new Stellar Anchor. Most users drop before completing KYC that lead to 40–50% drop-off rate.
+              Users have to re-upload the same documents every time they use a new Stellar anchor. Most abandon the process before finishing, industry estimates put drop-off as high as 60%.
             </p>
           </article>
 
@@ -22,7 +22,7 @@ export function ProblemSection() {
             <Building2 className="h-10 w-10 sm:h-14 sm:w-14 md:h-16 md:w-16 text-white" strokeWidth={1.2} />
             <h3 className="mt-5 sm:mt-8 text-xl sm:text-2xl md:text-3xl font-semibold text-white leading-tight">For Anchors</h3>
             <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg leading-relaxed text-zinc-300">
-              Anchors cannot reuse verified identity from other providers, so they pay for the same KYC again and again, even when users abandon midway.
+              Anchors can't reuse verified KYC from other providers already completed, so they pay for the same KYC again and again, even for users who are already compliant elsewhere.
             </p>
           </article>
 
@@ -30,7 +30,7 @@ export function ProblemSection() {
             <Wallet className="h-10 w-10 sm:h-14 sm:w-14 md:h-16 md:w-16 text-white" strokeWidth={1.2} />
             <h3 className="mt-5 sm:mt-8 text-xl sm:text-2xl md:text-3xl font-semibold text-white leading-tight">For Ecosystem</h3>
             <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg leading-relaxed text-zinc-300">
-              Duplicate checks drain tens of millions of dollars yearly across every Stellar Anchor and waste time for users to reverify. The network is missing shared identity infrastructure.
+              Every duplicate check costs real money and real time, for anchors paying repeatedly, and for users waiting again. Stellar has no infrastructure for reusing a verification once it's done.
             </p>
           </article>
         </div>

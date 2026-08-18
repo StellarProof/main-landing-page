@@ -42,8 +42,8 @@ export function FooterSection() {
             </span>
           </Link>
           <p className="text-gray-500 text-sm leading-relaxed">
-            Zk proof identity infra layer for Stellar ecosystem.
-            Prove's everything, Reveal nothing.
+            Reusable zero-knowledge KYC infrastructure for Stellar anchors.
+            Prove everything, reveal nothing.
           </p>
         </div>
 

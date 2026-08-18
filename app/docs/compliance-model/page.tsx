@@ -19,14 +19,16 @@ export default function ComplianceModelPage() {
 
       <DocH2>Where the regulated copy will live</DocH2>
       <DocP>
-        With the licensed KYC provider that performed the original verification Didit.
-        Didit will retain the compliance copy under its own regulatory obligations, exactly
-        as it does today. A subpoena for the underlying documents will go to Didit.
+        With the licensed KYC provider that performed the original verification —
+        Didit. Didit will retain the compliance copy under its own regulatory
+        obligations, exactly as it does today. StellarProof is establishing the
+        contractual arrangements needed to confirm evidentiary access for anchors
+        and regulators when required.
       </DocP>
       <DocP>
         A regulator compelling StellarProof would produce approved issuer public keys,
-        revocation roots, and ciphertext StellarProof cannot decrypt. Nothing that
-        identifies any individual.
+        revocation roots, and ciphertext StellarProof cannot decrypt, none of which is usable
+        to identify an individual without a key StellarProof does not hold.
       </DocP>
 
       <DocH2>What will satisfy an anchor&apos;s obligation</DocH2>

@@ -13,7 +13,7 @@ export default function TeamPage() {
       <DocH1>Team</DocH1>
       <DocP>
         <a
-          href="https://x.com/ushiki_kirigawa"
+          href="https://x.com/dhanushonchain"
           target="_blank"
           rel="noopener noreferrer"
           className="text-[#06B6D4] underline"

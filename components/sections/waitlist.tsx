@@ -47,11 +47,12 @@ export function WaitlistSection() {
 
       <div className="relative z-10 max-w-2xl mx-auto text-center">
         <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-          Join Waitlist
+          Get Early Access
         </h2>
         <p className="text-gray-400 text-base sm:text-lg mb-8 sm:mb-10 leading-relaxed">
-          Be the first anchor to go live.<br />
-          Early Anchors get a surprise when we launch 😉
+          StellarProof is building toward an initial anchor pilot. Early
+          collaborator anchors get first access once the system is live, and direct input
+          into what gets built next.
         </p>
 
         {submitted ? (
