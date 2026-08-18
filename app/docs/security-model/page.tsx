@@ -23,17 +23,12 @@ export default function SecurityModelPage() {
         with XChaCha20-Poly1305 to keys derived on each user&apos;s own device, which
         StellarProof will not have and cannot obtain.
       </DocP>
-      <DocP>
-        No names. No dates of birth. No document numbers. No addresses. No images. This will
-        be enforced by a test that runs a real issuance and fails if any personal attribute
-        reaches storage.
-      </DocP>
 
       <DocH2>What StellarProof itself will not be able to do</DocH2>
       <DocP>
         StellarProof will not be able to track a user across anchors, and this is a property
         of the cryptography rather than a policy commitment. A user&apos;s credential is
-        bound to the <em>hash</em> of their secret, never the secret itself — StellarProof
+        bound to the <em>hash</em> of their secret, never the secret itself  StellarProof
         only ever receives the hash. Deriving the per-anchor identifiers that would let
         anyone follow a user requires the secret itself, which StellarProof will never have.
       </DocP>
@@ -42,7 +37,7 @@ export default function SecurityModelPage() {
       <DocP>
         Compare their records and identify a common user. Every anchor will receive a
         different value derived from the user&apos;s secret and the anchor&apos;s own ID.
-        The one value that would be identical everywhere — the credential commitment — is
+        The one value that would be identical everywhere  the credential commitment is
         deliberately never revealed, precisely because it would function as a perfect join
         key.
       </DocP>

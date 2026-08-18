@@ -25,24 +25,7 @@ export default function ArchitecturePage() {
         every anchor after that verifies a cryptographic proof generated on the user&apos;s own
         device — never a document, and never a verdict handed down by us.
       </DocLead>
-
-      <DocBlock>{`┌─ OFF-CHAIN ─────────────────────┐    ┌─ ON-CHAIN (Soroban) ──────────┐
-│                                 │    │                               │
-│  KYC Provider  ──webhook(PII)──►  ①    │    │  ③ Issuer Registry            │
-│  (licensed KYC)         Issuer  │───►│     approved issuer pubkeys   │
-│                         Service │reg │                               │
-│                            │    │    │  ④ Revocation Registry        │
-│                     sealed │    │    │     current revocation root   │
-│                     cred   ▼    │    │                               │
-│                    ② Wallet PWA │───►│  ⑤ ZK Verifier                │
-│                       - SEP-10  │prf │     bn254 pairing check       │
-│                       - snarkjs │    │     + nullifier registry      │
-│                       - IndexedDB│   │     → compliance event        │
-│                            │    │    │                               │
-│                            ▼    │    │                               │
-│                    ⑥ Anchor     ├───►│  (reads compliance status)    │
-│                       + JS SDK  │    │                               │
-└─────────────────────────────────┘    └───────────────────────────────┘`}</DocBlock>
+      
       <DocCallout type="info">
         Personal data crosses exactly one edge in this diagram: KYC provider → Issuer, in
         memory, once. Everything downstream of that edge is commitments, ciphertext and

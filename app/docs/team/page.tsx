@@ -20,7 +20,8 @@ export default function TeamPage() {
         >
           Dhanush
         </a>{" "}
-        — Founder of StellarProof
+        <br />
+         Founder of StellarProof
       </DocP>
 
       <DocPrevNext prev={prev} next={next} />
